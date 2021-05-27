@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/task")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class TaskController {
     private final DbService service;
     private final TaskMapper taskMapper;
@@ -29,8 +30,8 @@ public class TaskController {
         );
     }
 
-    @DeleteMapping(value = "/deleteTask/{taskId}")
-    public void deleteTask(@PathVariable Long taskId) throws TaskNotFoundException {
+    @DeleteMapping(value = "deleteTask")
+    public void deleteTask(@RequestParam Long taskId) throws TaskNotFoundException {
         if (service.getTask(taskId).isPresent()) {
             service.deleteTask(taskId);
         } else {
