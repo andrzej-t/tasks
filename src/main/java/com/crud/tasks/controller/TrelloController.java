@@ -13,7 +13,7 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/v1/trello")
 @RequiredArgsConstructor
-public class TrelloController {
+public final class TrelloController {
 
     private final TrelloClient trelloClient;
 
@@ -21,7 +21,7 @@ public class TrelloController {
     @GetMapping("getTrelloBoards")
     public void getTrelloBoards() {
 
-        List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
+        final List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
 
         trelloBoards.stream()
                 .filter(p->Objects.nonNull(p.getId()) && Objects.nonNull(p.getName()))
@@ -29,6 +29,7 @@ public class TrelloController {
                 .forEach(trelloBoardDto -> {
             System.out.println(trelloBoardDto.getId() + " " + trelloBoardDto.getName());
         });
+
     }
 
 //    @GetMapping("getTrelloBoards")
