@@ -26,6 +26,7 @@ public class TaskMapper {
         );
     }
 
+
     public List<TaskDto> mapToTaskDtoList(final List<Task> taskList) {
         return taskList.stream()
                 .map(this::mapToTaskDto)
