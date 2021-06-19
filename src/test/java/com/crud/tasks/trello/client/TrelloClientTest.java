@@ -1,5 +1,6 @@
 package com.crud.tasks.trello.client;
 
+import com.crud.tasks.domain.Badges;
 import com.crud.tasks.domain.CreatedTrelloCard;
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
@@ -60,7 +61,6 @@ class TrelloClientTest {
         when(trelloConfig.getTrelloApiEndpoint()).thenReturn("http://test.com");
         when(trelloConfig.getTrelloAppKey()).thenReturn("test");
         when(trelloConfig.getTrelloToken()).thenReturn("test");
-//        when(trelloConfig.getTrelloUsername()).thenReturn("test"); //Unnecessary stubbings detected by IntelliJ
         TrelloCardDto trelloCardDto = new TrelloCardDto(
                 "Test task",
                 "Test Description",
@@ -72,7 +72,8 @@ class TrelloClientTest {
         CreatedTrelloCard createdTrelloCard = new CreatedTrelloCard(
                 "1",
                 "test task",
-                "http://test.com"
+                "http://test.com",
+                new Badges()
         );
 
         when(restTemplate.postForObject(uri, null, CreatedTrelloCard.class)).thenReturn(createdTrelloCard);
