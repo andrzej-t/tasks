@@ -7,12 +7,13 @@ import com.crud.tasks.service.DbService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/v1/task")
 @RequiredArgsConstructor
-@CrossOrigin("*")
 public class TaskController {
     private final DbService service;
     private final TaskMapper taskMapper;
