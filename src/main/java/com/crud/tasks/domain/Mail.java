@@ -1,11 +1,12 @@
 package com.crud.tasks.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-
+@Builder
 public final class Mail {
     private final String mailTo;
     private final String subject;
