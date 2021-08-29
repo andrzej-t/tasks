@@ -26,29 +26,24 @@ public class SimpleEmailService {
         try {
             SimpleMailMessage mailMessage = createMailMessage(mail);
             javaMailSender.send(createMimeMessage(mail));
+            javaMailSender.send(mailMessage);
+            javaMailSender.send(createScheduledMessage(mail));
             log.info("Email has been sent.");
         } catch (MailException e) {
             log.error("Failed to process email sending: " + e.getMessage(), e);
         }
-//        try {
-//            SimpleMailMessage mailMessage = createMailMessage(mail);
-//            javaMailSender.send(mailMessage);
-//            log.info("Email has been sent.");
-//        } catch (MailException e) {
-//            log.error("Failed to process email sending: " + e.getMessage(), e);
-//        }
     }
 
-//    private SimpleMailMessage createMailMessage(final Mail mail) {
-//        SimpleMailMessage mailMessage = new SimpleMailMessage();
-//        mailMessage.setTo(mail.getMailTo());
-//        mailMessage.setSubject(mail.getSubject());
-//        mailMessage.setText(mail.getMessage());
-//        if (Optional.ofNullable(mail.getToCc()).isPresent()){
-//            mailMessage.setCc(mail.getToCc());
-//        }
-//        return mailMessage;
-//    }
+    private SimpleMailMessage createMailMessage(final Mail mail) {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(mail.getMailTo());
+        mailMessage.setSubject(mail.getSubject());
+        mailMessage.setText(mail.getMessage());
+        if (Optional.ofNullable(mail.getToCc()).isPresent()){
+            mailMessage.setCc(mail.getToCc());
+        }
+        return mailMessage;
+    }
 
     private MimeMessagePreparator createMimeMessage(final Mail mail) {
         return mimeMessage -> {
@@ -59,12 +54,13 @@ public class SimpleEmailService {
         };
     }
 
-    private SimpleMailMessage createMailMessage(final Mail mail) {
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo(mail.getMailTo());
-        mailMessage.setSubject(mail.getSubject());
-        mailMessage.setText(mailCreatorService.buildTrelloCardEmail(mail.getMessage()));
-        return mailMessage;
+    private MimeMessagePreparator createScheduledMessage(final Mail mail) {
+        return mimeMessage -> {
+            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
+            messageHelper.setTo(mail.getMailTo());
+            messageHelper.setSubject(mail.getSubject());
+            messageHelper.setText(mailCreatorService.buildScheduledMail(mail.getMessage()), true);
+        };
     }
 
 }
