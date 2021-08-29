@@ -29,7 +29,6 @@ public class TrelloMapperTestSuite {
         assertEquals("board_01", trelloBoards.get(0).getName());
         assertEquals("01", trelloBoards.get(0).getId());
         assertEquals(1, trelloBoards.get(0).getLists().size());
-
     }
 
     @Test
@@ -77,7 +76,6 @@ public class TrelloMapperTestSuite {
         assertEquals("01", trelloListDto.get(0).getId());
         assertEquals("list_01", trelloListDto.get(0).getName());
         assertEquals(1, trelloListDto.size());
-
     }
 
     @Test
@@ -93,7 +91,6 @@ public class TrelloMapperTestSuite {
         assertEquals("desc_01", trelloCard.getDescription());
         assertEquals("pos_01", trelloCard.getPos());
         assertEquals("01", trelloCard.getListId());
-
     }
 
     @Test
@@ -109,6 +106,5 @@ public class TrelloMapperTestSuite {
         assertEquals("desc_01", trelloCardDto.getDescription());
         assertEquals("pos_01", trelloCardDto.getPos());
         assertEquals("01", trelloCardDto.getListId());
-
     }
 }

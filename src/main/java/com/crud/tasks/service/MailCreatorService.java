@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,5 +66,4 @@ public class MailCreatorService {
         return templateEngine.process("mail/created-trello-card-mail2", context);
 
     }
-
 }

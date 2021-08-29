@@ -62,5 +62,4 @@ public class SimpleEmailService {
             messageHelper.setText(mailCreatorService.buildScheduledMail(mail.getMessage()), true);
         };
     }
-
 }

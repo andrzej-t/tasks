@@ -32,7 +32,5 @@ public class EmailScheduler {
                         "andrzej.tyrpa@gmail.com"
                 )
         );
-
     }
-
 }

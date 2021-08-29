@@ -14,9 +14,7 @@ import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
 import java.util.List;
-
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -38,7 +36,7 @@ class TrelloControllerTest {
         //When & Then
         mockMvc
                 .perform(MockMvcRequestBuilders
-                        .get("/v1/trello/getTrelloBoards")
+                        .get("/v1/trello/boards")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().is(200)) // or isOk()
        .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(0)));
@@ -55,7 +53,7 @@ class TrelloControllerTest {
         // When & Then
         mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/v1/trello/createTrelloCard")
+                        .post("/v1/trello/cards")
                         .contentType(MediaType.APPLICATION_JSON)
                         .characterEncoding("UTF-8")
                         .content(jsonContent))
